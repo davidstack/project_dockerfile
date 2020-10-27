@@ -1,0 +1,21 @@
+FROM nvcr.io/nvidia/mxnet:20.09-py3
+
+# Install OpenSSH for MPI to communicate between containers
+RUN apt-get install -y --no-install-recommends openssh-client openssh-server && \
+    mkdir -p /var/run/sshd && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /root/.cache/pip/http/*
+
+# Allow OpenSSH to talk to containers without asking for confirmation
+RUN cat /etc/ssh/ssh_config | grep -v StrictHostKeyChecking > /etc/ssh/ssh_config.new && \
+    echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config.new && \
+    cat /etc/ssh/sshd_config | grep -v  PermitRootLogin> /etc/ssh/sshd_config.new && \
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config.new && \
+    mv /etc/ssh/ssh_config.new /etc/ssh/ssh_config && \
+    mv /etc/ssh/sshd_config.new /etc/ssh/sshd_config
+
+#jupyter
+RUN mkdir /etc/jupyter/ && wget -P /etc/jupyter/  https://raw.githubusercontent.com/Winowang/jupyter_gpu/master/jupyter_notebook_config.py
+RUN wget -P /etc/jupyter/ https://raw.githubusercontent.com/Winowang/jupyter_gpu/master/custom.js
+
+WORKDIR "/examples"
+
