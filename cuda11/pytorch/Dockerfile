@@ -1,7 +1,7 @@
 FROM nvcr.io/nvidia/pytorch:20.08-py3
 
 # Install OpenSSH for MPI to communicate between containers
-RUN apt-get install -y --no-install-recommends openssh-client openssh-server && \
+RUN  apt-get -o Acquire::Check-Valid-Until=false  -o Acquire::Check-Date=false   update && apt-get install -y --no-install-recommends openssh-client openssh-server && \
     mkdir -p /var/run/sshd && \
 	apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /root/.cache/pip/http/*
 
