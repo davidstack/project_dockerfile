@@ -20,5 +20,6 @@ RUN wget -P /etc/jupyter/ https://raw.githubusercontent.com/Winowang/jupyter_gpu
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
+RUN conda install pytorch torchvision torchaudio cudatoolkit=11.0 -c pytorch
 
 WORKDIR "/home"
