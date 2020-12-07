@@ -20,5 +20,5 @@ RUN wget -P /etc/jupyter/ https://raw.githubusercontent.com/Winowang/jupyter_gpu
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
-
+RUN pip keras==2.3.1
 WORKDIR "/home"
