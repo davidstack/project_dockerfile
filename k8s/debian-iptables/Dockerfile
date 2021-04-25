@@ -1,0 +1,1 @@
+FROM k8s.gcr.io/debian-iptables-amd64:buster-v1.6.0

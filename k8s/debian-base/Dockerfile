@@ -1,0 +1,1 @@
+FROM k8s.gcr.io/build-image/debian-base-amd64:buster-v1.2.0
