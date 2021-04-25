@@ -1,1 +1,1 @@
-FROM k8s.gcr.io/build-image/debian-hyperkube-base:v1.1.3
+FROM k8s.gcr.io/debian-hyperkube-base:0.12.1
